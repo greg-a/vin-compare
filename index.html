@@ -91,6 +91,13 @@
             flex-direction: column;
         }
 
+        .list-group {
+            min-height: 0;
+            min-width: 0;
+            width: 170px;
+            position:absolute
+        }
+
         #vin-compare2 {
             margin-top: 50px;
         }
@@ -111,6 +118,11 @@
 
     <div class="jumbotron jumbotron-fluid text-center pb-0 pt-3">
         <div class="container">
+            <ul class="list-group">
+                Test VINs:
+                <li class="list-group-item">JH4CU2F60CC003474</li>
+                <li class="list-group-item">19UUA8F29CA038459</li>
+              </ul>
             <h1 class="display-4">Greg's VIN Decoder</h1>
             <p class="lead">Add two VINs to find the differences</p>
         </div>
@@ -120,7 +132,7 @@
             </li>
         </ul>
     </div>
-
+    
     <div class="main-container">
         <div class="input-group mb-3">
             <input type="text" class="form-control form-compare" placeholder="VIN" aria-label="VIN"
