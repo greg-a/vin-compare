@@ -20,8 +20,10 @@ body {
     text-transform: uppercase;
 }
 
-.list-group {
-    min-height: 450px;
+.vin {
+    color: black;
+    width: 195px;
+    text-align: center;
 }
 
 .list-group {
@@ -36,14 +38,22 @@ body {
 }
 
 .input-group {
-    width: 775px;
+    max-width: 775px;
     align-self: center;
     padding-bottom: 15px;
 }
 
-.list-group-item {
+.results {
     padding: .75rem 0;
     font-size: 0.95rem;
+}
+
+.test-vins {
+    min-height: 0;
+    min-width: 0;
+    width: 170px;
+    position:absolute;
+    left: 40px;
 }
 
 .btn {
@@ -99,5 +109,10 @@ body {
 @media only screen and (min-width: 1800px) {
     .jumbotron {
       background-position-y: -560px;
+    }
+  }
+@media only screen and (max-width: 980px) {
+    .test-vins {
+        position: relative;
     }
   }
