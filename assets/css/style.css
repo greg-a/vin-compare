@@ -1,0 +1,103 @@
+body {
+    background: url(../images/so-white.png);
+}
+
+.main-container {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.jumbotron {
+    background: url(../images/headlight-background.jpg);
+    background-size: cover;
+    background-position-y: -435px;
+    color: #ffffff;
+}
+
+.form-control {
+    text-transform: uppercase;
+}
+
+.list-group {
+    min-height: 450px;
+}
+
+.list-group {
+    min-height: 450px;
+    min-width: 650px;
+}
+
+.compare-container {
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+}
+
+.input-group {
+    width: 775px;
+    align-self: center;
+    padding-bottom: 15px;
+}
+
+.list-group-item {
+    padding: .75rem 0;
+    font-size: 0.95rem;
+}
+
+.btn {
+    width: 90px;
+}
+
+#compare-clear {
+    width: 60px;
+}
+
+.switch-toggle {
+    float: left;
+    width: 255px;
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+.switch-toggle input {
+    position: absolute;
+    opacity: 0;
+}
+
+.switch-toggle input + label {
+    padding: 7px;
+    float: left;
+    color: #000000ff;
+    cursor: pointer;
+    width: 33.3%;
+    text-align: center;
+    border: 1px solid rgb(189, 189, 189);
+}
+
+.switch-toggle input:checked + label {
+    background: green;
+    color: white;
+}
+
+.compare-container1 {
+    display: flex;
+    flex-direction: column;
+    padding-left: 15%;
+}
+.compare-container2 {
+    display: flex;
+    flex-direction: column;
+}
+
+#vin-compare2 {
+    margin-top: 50px;
+}
+
+
+@media only screen and (min-width: 1800px) {
+    .jumbotron {
+      background-position-y: -560px;
+    }
+  }
