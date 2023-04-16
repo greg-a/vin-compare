@@ -1,47 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="./assets/css/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
     <title>VIN Decoder</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-</head>
-<body>
-
+  </head>
+  <body>
     <div class="jumbotron jumbotron-fluid text-center pb-0 pt-3">
-        <div class="container">
-          <ul class="list-group test-vins">
-            Test VINs:
-            <li class="list-group-item vin">JH4CU2F60CC003474</li>
-            <li class="list-group-item vin">19UUA8F29CA038459</li>
-          </ul>
-          <h1 class="display-4">Greg's VIN Decoder</h1>
-          <p class="lead">Enter a VIN, get the deets</p>
-        </div>
-        <ul class="nav nav-tabs justify-content-center">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Decode</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./compare.html">Compare</a>
-            </li>
-          </ul>
+      <div class="container">
+        <ul class="list-group test-vins">
+          Test VINs:
+          <li class="list-group-item test-vin">JH4CU2F60CC003474</li>
+          <li class="list-group-item test-vin">19UUA8F29CA038459</li>
+        </ul>
+        <h1 class="display-4">VIN Decode</h1>
+        <p class="lead">Enter a VIN, get the deets</p>
+      </div>
+      <ul class="nav nav-tabs justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Decode</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./compare.html">Compare</a>
+        </li>
+      </ul>
     </div>
 
     <div class="main-container">
-        <div class="input-group mb-3">
-            <input type="text" class="form-control form-decode" placeholder="VIN" aria-label="VIN" aria-describedby="button-addon2">
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
-                <button class="btn btn-outline-danger" type="button" id="clear">Clear</button>
-            </div>
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control form-decode"
+          placeholder="VIN"
+          aria-label="VIN"
+          aria-describedby="button-addon2"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            id="button-addon2"
+          >
+            Search
+          </button>
+          <button class="btn btn-outline-danger" type="button" id="clear">
+            Clear
+          </button>
         </div>
+      </div>
 
-        <ul class="list-group list-group-flush decode-list"></ul>
+      <ul class="list-group list-group-flush decode-list"></ul>
     </div>
-    
+
     <script src="./assets/javascript/decode.js"></script>
-</body>
+  </body>
 </html>

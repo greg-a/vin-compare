@@ -1,118 +1,121 @@
 body {
-    background: url(../images/so-white.png);
+  background: url(../images/so-white.png);
+}
+
+input:invalid {
+  outline: auto;
 }
 
 .main-container {
-    width: 90%;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .jumbotron {
-    background: url(../images/headlight-background.jpg);
-    background-size: cover;
-    background-position-y: -435px;
-    color: #ffffff;
+  background: url(../images/headlight-background.jpg);
+  background-size: cover;
+  background-position-y: -435px;
+  color: #ffffff;
 }
 
 .form-control {
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
 
-.vin {
-    color: black;
-    width: 195px;
-    text-align: center;
+.test-vin {
+  color: black;
+  text-align: center;
+}
+
+.test-vin:hover {
+  cursor: pointer;
 }
 
 .list-group {
-    min-height: 450px;
-    min-width: 650px;
+  min-height: 450px;
+  min-width: 650px;
 }
 
 .compare-container {
-    display: flex;
-    justify-content: space-between;
-    width: 95%;
+  display: flex;
+  justify-content: center;
 }
 
 .input-group {
-    max-width: 775px;
-    align-self: center;
-    padding-bottom: 15px;
+  max-width: 775px;
+  align-self: center;
+  padding-bottom: 15px;
 }
 
 .results {
-    padding: .75rem 0;
-    font-size: 0.95rem;
+  padding: 0.75rem 0;
+  font-size: 0.95rem;
 }
 
 .test-vins {
-    min-height: 0;
-    min-width: 0;
-    width: 170px;
-    position:absolute;
-    left: 40px;
+  min-height: 0;
+  min-width: 0;
+  position: absolute;
+  left: 40px;
 }
 
 .btn {
-    width: 90px;
+  width: 90px;
 }
 
 #compare-clear {
-    width: 60px;
+  width: 60px;
 }
 
 .switch-toggle {
-    float: left;
-    width: 255px;
-    height: 40px;
-    margin-bottom: 10px;
+  float: left;
+  width: 255px;
+  height: 40px;
+  margin-bottom: 10px;
 }
 
 .switch-toggle input {
-    position: absolute;
-    opacity: 0;
+  position: absolute;
+  opacity: 0;
 }
 
 .switch-toggle input + label {
-    padding: 7px;
-    float: left;
-    color: #000000ff;
-    cursor: pointer;
-    width: 33.3%;
-    text-align: center;
-    border: 1px solid rgb(189, 189, 189);
+  padding: 7px;
+  float: left;
+  color: #000000ff;
+  cursor: pointer;
+  width: 33.3%;
+  text-align: center;
+  border: 1px solid rgb(189, 189, 189);
 }
 
 .switch-toggle input:checked + label {
-    background: green;
-    color: white;
+  background: green;
+  color: white;
 }
 
 .compare-container1 {
-    display: flex;
-    flex-direction: column;
-    padding-left: 15%;
+  display: flex;
+  flex-direction: column;
 }
 .compare-container2 {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 #vin-compare2 {
-    margin-top: 50px;
+  margin-top: 50px;
 }
 
-
 @media only screen and (min-width: 1800px) {
-    .jumbotron {
-      background-position-y: -560px;
-    }
+  .jumbotron {
+    background-position-y: -560px;
   }
+}
 @media only screen and (max-width: 980px) {
-    .test-vins {
-        position: relative;
-    }
+  .test-vins {
+    position: relative;
   }
+}
