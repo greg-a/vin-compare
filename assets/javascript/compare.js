@@ -38,18 +38,16 @@ compareBtn.addEventListener("click", function () {
     });
 
     const app1 = document.createElement("h5");
+    const ymm1 = getYearMakeModel(vinInfo1);
     app1.appendChild(
-      document.createTextNode(
-        `${vinInfo1[10].Value} ${vinInfo1[7].Value} ${vinInfo1[9].Value}`
-      )
+      document.createTextNode(`${ymm1.year} ${ymm1.make} ${ymm1.model}`)
     );
     vinCompare1.appendChild(app1);
 
     const app2 = document.createElement("h5");
+    const ymm2 = getYearMakeModel(vinInfo2);
     app2.appendChild(
-      document.createTextNode(
-        `${vinInfo2[10].Value} ${vinInfo2[7].Value} ${vinInfo2[9].Value}`
-      )
+      document.createTextNode(`${ymm2.year} ${ymm2.make} ${ymm2.model}`)
     );
     vinCompare2.appendChild(app2);
 
@@ -76,6 +74,7 @@ compareBtn.addEventListener("click", function () {
 async function addVIN() {
   const vinValue = vinInput.value.trim();
   if (isValidVIN(vinValue)) {
+    toggleLoadingSpinner(true);
     const vinStuff = await getVinInfo(vinValue);
 
     if (!vinInfo1) {
@@ -112,6 +111,7 @@ async function addVIN() {
       }
     }
 
+    toggleLoadingSpinner(false);
     vinInput.value = "";
   }
 }

@@ -19,25 +19,27 @@ clearBtn.addEventListener("click", function () {
 });
 
 async function decodeVIN() {
-  decodeList.innerHTML = "";
   const vinValue = vinInput.value.trim();
+  if (isValidVIN(vinValue)) {
+    toggleLoadingSpinner(true);
+    vinInfo = await getVinInfo(vinValue);
+    decodeList.innerHTML = "";
 
-  decodeList.html = "";
-  vinInfo = await getVinInfo(vinValue);
+    attributeToggle.style.visibility = "visible";
+    decodeList.appendChild(createVINLabel(vinValue));
+    for (var i = 5; i < vinInfo.length; i++) {
+      const key = vinInfo[i].Variable;
+      const value = vinInfo[i].Value;
+      const decodeLI = createDecodeLI(key, value);
 
-  attributeToggle.style.visibility = "visible";
-  decodeList.appendChild(createVINLabel(vinValue));
-  for (var i = 5; i < vinInfo.length; i++) {
-    const key = vinInfo[i].Variable;
-    const value = vinInfo[i].Value;
-    const decodeLI = createDecodeLI(key, value);
-
-    if (value != null) {
-      decodeLI.className = "list-group-item";
-      decodeList.append(decodeLI);
-      decodeLI.setAttribute("id", `item-${i}`);
+      if (value != null) {
+        decodeLI.className = "list-group-item";
+        decodeList.append(decodeLI);
+        decodeLI.setAttribute("id", `item-${i}`);
+      }
     }
-  }
 
-  vinInput.value = "";
+    toggleLoadingSpinner(false);
+    vinInput.value = "";
+  }
 }

@@ -46,11 +46,19 @@
         />
         <div class="input-group-append">
           <button
-            class="btn btn-outline-secondary"
+            class="btn btn-outline-secondary d-flex justify-content-center align-items-center"
             type="button"
             id="search-btn"
           >
-            Search
+            <div
+              class="spinner-border spinner-border-sm"
+              role="status"
+              style="display: none"
+              id="loading-spinner"
+            >
+              <span class="sr-only">Loading...</span>
+            </div>
+            <span id="btn-text">Search</span>
           </button>
           <button
             class="btn btn-outline-secondary"

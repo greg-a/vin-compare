@@ -8,6 +8,21 @@ function isValidVIN(vin) {
   return vin.length === 17;
 }
 
+function getYearMakeModel(vinData) {
+  const year = vinData.find((d) => d.Variable === "Model Year").Value;
+  const make = vinData.find((d) => d.Variable === "Make").Value;
+  const model = vinData.find((d) => d.Variable === "Model").Value;
+  return { year, make, model };
+}
+
+function toggleLoadingSpinner(isLoading) {
+  const loadingSpinner = searchBtn.querySelector("#loading-spinner");
+  const btnText = searchBtn.querySelector("#btn-text");
+
+  loadingSpinner.style.display = isLoading ? "initial" : "none";
+  btnText.style.display = isLoading ? "none" : "initial";
+}
+
 function createDecodeLI(key, value) {
   const newLI = document.createElement("li");
   const bold = document.createElement("b");
