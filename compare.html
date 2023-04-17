@@ -10,7 +10,6 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="./assets/css/style.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <title>VIN Decoder</title>
   </head>
   <body>
@@ -38,10 +37,10 @@
       <div class="input-group mb-3">
         <input
           type="text"
-          class="form-control form-compare"
+          class="form-control vin-input"
           placeholder="enter first vin..."
           aria-label="VIN"
-          aria-describedby="add-compare"
+          aria-describedby="search-btn"
           maxlength="17"
           minlength="17"
         />
@@ -49,39 +48,40 @@
           <button
             class="btn btn-outline-secondary"
             type="button"
-            id="add-compare"
+            id="search-btn"
           >
-            Add
-          </button>
-          <button class="btn btn-outline-secondary" type="button" id="compare">
-            Compare
+            Search
           </button>
           <button
-            class="btn btn-outline-danger"
+            class="btn btn-outline-secondary"
             type="button"
-            id="compare-clear"
+            id="compare-btn"
           >
+            Compare
+          </button>
+          <button class="btn btn-outline-danger" type="button" id="clear-btn">
             Clear
           </button>
         </div>
       </div>
 
       <div class="compare-container">
-        <div class="compare-container1">
+        <div class="compare-inner-container" id="compare-container-1">
           <ul
-            class="list-group list-group-flush compare"
+            class="list-group list-group-flush decode-list"
             id="vin-compare1"
           ></ul>
         </div>
-        <div class="compare-container2">
+        <div class="compare-inner-container" id="compare-container-2">
           <ul
-            class="list-group list-group-flush compare"
+            class="list-group list-group-flush decode-list"
             id="vin-compare2"
           ></ul>
         </div>
       </div>
     </div>
 
+    <script src="./assets/javascript/common.js"></script>
     <script src="./assets/javascript/compare.js"></script>
   </body>
 </html>

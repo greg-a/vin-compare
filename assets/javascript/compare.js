@@ -1,213 +1,117 @@
-var vinCompare1 = false;
-var vinCompare2 = false;
-var vinInfo1;
-var vinInfo2;
-var vinInput1;
-var vinInput2;
+let vinInfo1, vinInfo2;
 
-$("#add-compare").on("click", function () {
-  addVIN();
+const compareBtn = document.getElementById("compare-btn");
+const decodeLists = document.querySelectorAll(".decode-list");
+
+const compareContainer1 = document.getElementById("compare-container-1");
+const compareContainer2 = document.getElementById("compare-container-2");
+const vinCompare1 = document.getElementById("vin-compare1");
+const vinCompare2 = document.getElementById("vin-compare2");
+
+searchBtn.addEventListener("click", async function () {
+  await addVIN();
 });
 
-$(".form-compare").on("keyup", function (event) {
+vinInput.addEventListener("keyup", async function (event) {
   if (event.keyCode === 13) {
     addVIN();
   }
 });
 
-$("#compare-clear").on("click", function () {
-  $(".compare").empty();
+clearBtn.addEventListener("click", function () {
+  decodeLists.forEach((list) => (list.innerHTML = ""));
   vinInfo1 = null;
   vinInfo2 = null;
-  vinCompare1 = false;
-  vinCompare2 = false;
+
+  searchBtn.disabled = false;
+  vinInput.disabled = false;
+  vinInput.setAttribute("placeholder", "enter first vin...");
+
+  vinInput.value = "";
 });
 
-$("#compare").on("click", function () {
-  if (vinCompare1 === true && vinCompare2 === true) {
-    $(".compare").empty();
+compareBtn.addEventListener("click", function () {
+  if (vinInfo1 && vinInfo2) {
+    decodeLists.forEach((list) => {
+      const vinData = list.querySelectorAll("li");
+      vinData.forEach((li) => li.parentNode.removeChild(li));
+    });
+
+    const app1 = document.createElement("h5");
+    app1.appendChild(
+      document.createTextNode(
+        `${vinInfo1[10].Value} ${vinInfo1[7].Value} ${vinInfo1[9].Value}`
+      )
+    );
+    vinCompare1.appendChild(app1);
+
+    const app2 = document.createElement("h5");
+    app2.appendChild(
+      document.createTextNode(
+        `${vinInfo2[10].Value} ${vinInfo2[7].Value} ${vinInfo2[9].Value}`
+      )
+    );
+    vinCompare2.appendChild(app2);
 
     for (var i = 6; i < vinInfo1.length; i++) {
       if (vinInfo2[i].Value != vinInfo1[i].Value) {
         var dataName1 = vinInfo1[i].Variable;
         var dataInfo1 = vinInfo1[i].Value;
-        var dataContainer1 = $(
-          "<li class='text-danger'><b>" +
-            dataName1 +
-            ":</b> " +
-            dataInfo1 +
-            "</li>"
-        );
+        var dataContainer1 = createDecodeLI(dataName1, dataInfo1);
+
         var dataName2 = vinInfo2[i].Variable;
         var dataInfo2 = vinInfo2[i].Value;
-        var dataContainer2 = $(
-          "<li class='text-danger'><b>" +
-            dataName2 +
-            ":</b> " +
-            dataInfo2 +
-            "</li>"
-        );
+        var dataContainer2 = createDecodeLI(dataName2, dataInfo2);
 
-        dataContainer1.addClass("list-group-item");
-        $("#vin-compare1").append(dataContainer1);
-        dataContainer2.addClass("list-group-item");
-        $("#vin-compare2").append(dataContainer2);
+        dataContainer1.className = "list-group-item text-danger";
+        dataContainer2.className = "list-group-item text-danger";
+
+        vinCompare1.appendChild(dataContainer1);
+        vinCompare2.appendChild(dataContainer2);
       }
     }
-    $("#vin-compare1").prepend(
-      "<h5><b>App: </b>" +
-        vinInfo1[9].Value +
-        " " +
-        vinInfo1[6].Value +
-        " " +
-        vinInfo1[8].Value +
-        "</h5>"
-    );
-    $("#vin-compare1").prepend(vinInput1);
-    $("#vin-compare2").prepend(
-      "<h5><b>App: </b>" +
-        vinInfo2[9].Value +
-        " " +
-        vinInfo2[6].Value +
-        " " +
-        vinInfo2[8].Value +
-        "</h5>"
-    );
-    $("#vin-compare2").prepend(vinInput2);
   }
 });
 
-$("#compare-clear").on("click", function () {
-  var vinInput = $(".form-compare");
-  $(".compare-container1").html(
-    "<ul class='list-group list-group-flush compare' id='vin-compare1'></ul>"
-  );
-  $("#add-compare").prop("disabled", false);
-  vinInput.attr("placeholder", "enter first vin...");
-  vinInput.prop("disabled", false);
-  vinInput.val("");
-  vinCompare1 = false;
-  vinCompare2 = false;
-  vinInfo1;
-  vinInfo2;
-  vinInput1;
-  vinInput2;
-});
-
-$(document).on("click", "#not", function () {
-  for (var i = 6; i < vinInfo1.length; i++) {
-    if (vinInfo1[i].Value === null || vinInfo1[i].Value === "Not Applicable") {
-      $("#item-" + i).css("display", "none");
-    } else {
-      $("#item-" + i).css("display", "initial");
-    }
-  }
-  for (var i = 6; i < vinInfo2.length; i++) {
-    if (vinInfo2[i].Value === null || vinInfo2[i].Value === "Not Applicable") {
-      $("#item2-" + i).css("display", "none");
-    } else {
-      $("#item2-" + i).css("display", "initial");
-    }
-  }
-});
-
-$(document).on("click", "#null", function () {
-  for (var i = 6; i < vinInfo1.length; i++) {
-    if (vinInfo1[i].Value != null && vinInfo1[i].Value != "Not Applicable") {
-      $("#item-" + i).css("display", "none");
-    } else {
-      $("#item-" + i).css("display", "initial");
-    }
-  }
-  for (var i = 6; i < vinInfo2.length; i++) {
-    if (vinInfo2[i].Value != null && vinInfo2[i].Value != "Not Applicable") {
-      $("#item2-" + i).css("display", "none");
-    } else {
-      $("#item2-" + i).css("display", "initial");
-    }
-  }
-});
-
-$(document).on("click", "#all", function () {
-  for (var i = 6; i < vinInfo1.length; i++) {
-    $("#item-" + i).css("display", "initial");
-    $("#item2-" + i).css("display", "initial");
-  }
-});
-
-$(document).on("click", ".test-vin", function (event) {
-  var value = event.target.textContent;
-  var vinInput = $(".form-compare");
-  var inputDisabled = vinInput.prop("disabled");
-  if (!inputDisabled) {
-    vinInput.val(value);
-    vinInput.focus();
-  }
-});
-
-function isValidVIN(vin) {
-  return vin.length === 17;
-}
-
-function addVIN() {
-  var vinInput = $(".form-compare");
-  var vinValue = vinInput.val().trim();
+async function addVIN() {
+  const vinValue = vinInput.value.trim();
   if (isValidVIN(vinValue)) {
-    var queryURL =
-      "https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/" +
-      vinValue +
-      "?format=json";
-    $(".decode-list").empty();
+    const vinStuff = await getVinInfo(vinValue);
 
-    $.ajax({
-      url: queryURL,
-      method: "GET",
-    }).then(function (response) {
-      var vinStuff = response.Results;
+    if (!vinInfo1) {
+      vinInput.setAttribute("placeholder", "enter second vin...");
+      vinCompare1.appendChild(createVINLabel(vinValue));
+      vinInfo1 = vinStuff;
 
-      if (vinCompare1 === false) {
-        vinInput.attr("placeholder", "enter second vin...");
-        vinInput1 = $("<h4><b>VIN: </b>" + vinValue.toUpperCase() + "</h4>");
-        vinInfo1 = vinStuff;
+      for (var i = 6; i < vinStuff.length; i++) {
+        const key = vinStuff[i].Variable;
+        const value = vinStuff[i].Value;
+        const decodeLI = createDecodeLI(key, value);
 
-        for (var i = 6; i < vinStuff.length; i++) {
-          var dataName = vinStuff[i].Variable;
-          var dataInfo = vinStuff[i].Value;
-          var dataContainer = $(
-            "<li><b>" + dataName + ":</b> " + dataInfo + "</li>"
-          );
-          var toggle = $(
-            "<div class='switch-toggle switch-3 switch-candy'><input id='not' name='state-d' type='radio' checked='' /><label for='not' id='not-null'>Not Null</label><input id='all' name='state-d' type='radio' checked='checked' /><label for='all' class='disabled'>All</label><input id='null' name='state-d' type='radio' /><label for='null' id='null-only'>Null</label></div>"
-          );
-
-          dataContainer.addClass("list-group-item");
-          dataContainer.attr("id", "item-" + i);
-          $("#vin-compare1").append(dataContainer);
+        if (value != null) {
+          decodeLI.className = "list-group-item";
+          decodeLI.setAttribute("id", `item1-${i}`);
+          vinCompare1.appendChild(decodeLI);
         }
-        $("#vin-compare1").prepend(vinInput1);
-        $(".compare-container1").prepend(toggle);
-        vinCompare1 = true;
-      } else if (vinCompare2 === false) {
-        vinInput.prop("disabled", true);
-        $("#add-compare").prop("disabled", true);
-        vinInput2 = $("<h4><b>VIN: </b>" + vinValue.toUpperCase() + "</h4>");
-        vinInfo2 = vinStuff;
-        for (var i = 6; i < vinStuff.length; i++) {
-          var dataName = vinStuff[i].Variable;
-          var dataInfo = vinStuff[i].Value;
-          var dataContainer = $(
-            "<li><b>" + dataName + ":</b> " + dataInfo + "</li>"
-          );
-
-          dataContainer.addClass("list-group-item");
-          dataContainer.attr("id", "item2-" + i);
-          $("#vin-compare2").append(dataContainer);
-        }
-        $("#vin-compare2").prepend(vinInput2);
-        vinCompare2 = true;
       }
+    } else if (!vinInfo2) {
+      vinInput.setAttribute("disabled", true);
+      searchBtn.setAttribute("disabled", true);
+      vinCompare2.appendChild(createVINLabel(vinValue));
+      vinInfo2 = vinStuff;
+      for (var i = 6; i < vinStuff.length; i++) {
+        const key = vinStuff[i].Variable;
+        const value = vinStuff[i].Value;
+        const decodeLI = createDecodeLI(key, value);
 
-      vinInput.val("");
-    });
+        if (value != null) {
+          decodeLI.className = "list-group-item";
+          decodeLI.setAttribute("id", `item2-${i}`);
+          vinCompare2.appendChild(decodeLI);
+        }
+      }
+    }
+
+    vinInput.value = "";
   }
 }

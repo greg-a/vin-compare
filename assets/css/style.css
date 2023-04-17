@@ -65,7 +65,7 @@ input:invalid {
   width: 90px;
 }
 
-#compare-clear {
+#clear-btn {
   width: 60px;
 }
 
@@ -96,17 +96,9 @@ input:invalid {
   color: white;
 }
 
-.compare-container1 {
+.compare-inner-container {
   display: flex;
   flex-direction: column;
-}
-.compare-container2 {
-  display: flex;
-  flex-direction: column;
-}
-
-#vin-compare2 {
-  margin-top: 50px;
 }
 
 @media only screen and (min-width: 1800px) {
