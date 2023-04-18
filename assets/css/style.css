@@ -9,11 +9,15 @@ body {
     "toggle toggle"
     "main1 main2";
   gap: 10px;
-  margin: 10px 50px 50px 50px;
+  margin: 50px;
 }
 
 .input-group {
   grid-area: search;
+}
+
+#logo {
+  font-family: "Anuphan", sans-serif;
 }
 
 #attribute-toggle {
