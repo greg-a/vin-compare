@@ -88,8 +88,8 @@ async function addVIN() {
 
 testVinBtns.forEach((btn) =>
   btn.addEventListener("click", function (event) {
-    var value = event.target.textContent;
-    var inputDisabled = vinInput.getAttribute("disabled");
+    const value = event.target.textContent;
+    const inputDisabled = vinInput.getAttribute("disabled");
     if (!inputDisabled) {
       vinInput.value = value;
       vinInput.focus();
@@ -135,21 +135,21 @@ attributeToggle.addEventListener("click", function (event) {
         if (vinInfo1 && vinInfo2) {
           clearVinInfo(...decodeLists);
 
-          for (var i = 6; i < vinInfo1.length; i++) {
+          for (let i = 6; i < vinInfo1.length; i++) {
             if (vinInfo2[i].Value !== vinInfo1[i].Value) {
-              var dataName1 = vinInfo1[i].Variable;
-              var dataInfo1 = vinInfo1[i].Value;
-              var dataContainer1 = createDecodeLI(dataName1, dataInfo1);
+              const key1 = vinInfo1[i].Variable;
+              const value1 = vinInfo1[i].Value;
+              const vinInfoLI1 = createDecodeLI(key1, value1);
 
-              var dataName2 = vinInfo2[i].Variable;
-              var dataInfo2 = vinInfo2[i].Value;
-              var dataContainer2 = createDecodeLI(dataName2, dataInfo2);
+              const key2 = vinInfo2[i].Variable;
+              const value2 = vinInfo2[i].Value;
+              const vinInfoLI2 = createDecodeLI(key2, value2);
 
-              dataContainer1.className = "list-group-item text-danger vin-data";
-              dataContainer2.className = "list-group-item text-danger vin-data";
+              vinInfoLI1.className = "list-group-item text-danger vin-data";
+              vinInfoLI2.className = "list-group-item text-danger vin-data";
 
-              vinCompare1.appendChild(dataContainer1);
-              vinCompare2.appendChild(dataContainer2);
+              vinCompare1.appendChild(vinInfoLI1);
+              vinCompare2.appendChild(vinInfoLI2);
             }
           }
         }
