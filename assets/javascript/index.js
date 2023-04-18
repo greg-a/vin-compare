@@ -34,6 +34,7 @@ clearBtn.addEventListener("click", function () {
   vinInput.setAttribute("placeholder", "enter first vin...");
   attributeToggle.style.visibility = "hidden";
   compareBtnLabel.style.visibility = "hidden";
+  document.getElementById("all").checked = true;
 
   vinInput.value = "";
 });

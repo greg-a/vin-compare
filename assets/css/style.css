@@ -3,10 +3,29 @@ body {
 }
 
 .main-container {
-  width: 90%;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-areas:
+    "search search"
+    "toggle toggle"
+    "main1 main2";
+  gap: 10px;
+  margin: 10px 50px 50px 50px;
+}
+
+.input-group {
+  grid-area: search;
+}
+
+#attribute-toggle {
+  grid-area: toggle;
+}
+
+#compare-container-1 {
+  grid-area: main1;
+}
+
+#compare-container-2 {
+  grid-area: main2;
 }
 
 .jumbotron {
@@ -29,27 +48,10 @@ body {
   cursor: pointer;
 }
 
-.list-group {
-  min-height: 450px;
-  min-width: 650px;
-}
-
-.compare-container {
-  display: flex;
-  justify-content: center;
-}
-
-.input-group {
-  max-width: 775px;
-  align-self: center;
-  padding-bottom: 15px;
-}
-
 .test-vins {
   min-height: 0;
   min-width: 0;
   position: absolute;
-  left: 40px;
 }
 
 .btn {
