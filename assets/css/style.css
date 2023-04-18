@@ -2,10 +2,6 @@ body {
   background: url(../images/so-white.png);
 }
 
-input:invalid {
-  outline: auto;
-}
-
 .main-container {
   width: 90%;
   margin: auto;
@@ -49,11 +45,6 @@ input:invalid {
   padding-bottom: 15px;
 }
 
-.results {
-  padding: 0.75rem 0;
-  font-size: 0.95rem;
-}
-
 .test-vins {
   min-height: 0;
   min-width: 0;
@@ -67,33 +58,6 @@ input:invalid {
 
 #clear-btn {
   width: 60px;
-}
-
-.switch-toggle {
-  float: left;
-  width: 255px;
-  height: 40px;
-  margin-bottom: 10px;
-}
-
-.switch-toggle input {
-  position: absolute;
-  opacity: 0;
-}
-
-.switch-toggle input + label {
-  padding: 7px;
-  float: left;
-  color: #000000ff;
-  cursor: pointer;
-  width: 33.3%;
-  text-align: center;
-  border: 1px solid rgb(189, 189, 189);
-}
-
-.switch-toggle input:checked + label {
-  background: green;
-  color: white;
 }
 
 .compare-inner-container {

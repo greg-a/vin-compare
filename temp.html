@@ -20,15 +20,15 @@
           <li class="list-group-item test-vin">JH4CU2F60CC003474</li>
           <li class="list-group-item test-vin">19UUA8F29CA038459</li>
         </ul>
-        <h1 class="display-4">VIN Compare</h1>
-        <p class="lead">Add two VINs and compare the differences</p>
+        <h1 class="display-4">VIN Decode</h1>
+        <p class="lead">Enter a VIN, get the deets</p>
       </div>
       <ul class="nav nav-tabs justify-content-center">
         <li class="nav-item">
-          <a class="nav-link" href="./index.html">Decode</a>
+          <a class="nav-link active" href="#">Decode</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="#">Compare</a>
+          <a class="nav-link" href="./compare.html">Compare</a>
         </li>
       </ul>
     </div>
@@ -38,11 +38,11 @@
         <input
           type="text"
           class="form-control vin-input"
-          placeholder="enter first vin..."
+          placeholder="VIN"
           aria-label="VIN"
           aria-describedby="search-btn"
-          maxlength="17"
-          minlength="17"
+          autofocus
+          autocapitalize="characters"
         />
         <div class="input-group-append">
           <button
@@ -60,36 +60,34 @@
             </div>
             <span id="btn-text">Search</span>
           </button>
-          <button
-            class="btn btn-outline-secondary"
-            type="button"
-            id="compare-btn"
-          >
-            Compare
-          </button>
           <button class="btn btn-outline-danger" type="button" id="clear-btn">
             Clear
           </button>
         </div>
       </div>
-
-      <div class="compare-container">
-        <div class="compare-inner-container" id="compare-container-1">
-          <ul
-            class="list-group list-group-flush decode-list"
-            id="vin-compare1"
-          ></ul>
-        </div>
-        <div class="compare-inner-container" id="compare-container-2">
-          <ul
-            class="list-group list-group-flush decode-list"
-            id="vin-compare2"
-          ></ul>
-        </div>
+      <div
+        class="switch-toggle switch-3 switch-candy"
+        id="attribute-toggle"
+        style="visibility: hidden"
+      >
+        <input id="not" name="state-d" type="radio" checked="" /><label
+          for="not"
+          id="not-null"
+          >Not Null</label
+        ><input id="all" name="state-d" type="radio" checked="checked" /><label
+          for="all"
+          class="disabled"
+          >All</label
+        ><input id="null" name="state-d" type="radio" /><label
+          for="null"
+          id="null-only"
+          >Null</label
+        >
       </div>
+      <ul class="list-group list-group-flush decode-list"></ul>
     </div>
 
     <script src="./assets/javascript/common.js"></script>
-    <script src="./assets/javascript/compare.js"></script>
+    <script src="./assets/javascript/decode.js"></script>
   </body>
 </html>
