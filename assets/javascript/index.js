@@ -14,6 +14,9 @@ const clearBtn = document.getElementById("clear-btn");
 const testVinBtns = document.querySelectorAll(".test-vin");
 const attributeToggle = document.getElementById("attribute-toggle");
 
+const generateAffiliateLink = (vin) =>
+  `http://gsadev.vincheckup.hop.clickbank.net/?item=3&exitValue=ON&landing=loading&vin=${vin}&redir_page=index`;
+
 searchBtn.addEventListener("click", async function () {
   await addVIN();
 });
@@ -51,13 +54,15 @@ async function addVIN() {
         vinInput.setAttribute("placeholder", "enter second vin...");
         vinCompare1.appendChild(createVINLabel(vinValue));
         vinInfo1 = vinStuff;
-
         const app1 = document.createElement("h5");
         const ymm1 = getYearMakeModel(vinInfo1);
-        app1.appendChild(
-          document.createTextNode(`${ymm1.year} ${ymm1.make} ${ymm1.model}`)
-        );
-        vinCompare1.appendChild(app1);
+
+        if (Object.values(ymm1).every((val) => val)) {
+          app1.appendChild(
+            document.createTextNode(`${ymm1.year} ${ymm1.make} ${ymm1.model}`)
+          );
+          vinCompare1.appendChild(app1);
+        }
 
         showVinInfo(vinStuff, vinCompare1);
       } else if (!vinInfo2) {
@@ -70,10 +75,12 @@ async function addVIN() {
 
         const app2 = document.createElement("h5");
         const ymm2 = getYearMakeModel(vinInfo2);
-        app2.appendChild(
-          document.createTextNode(`${ymm2.year} ${ymm2.make} ${ymm2.model}`)
-        );
-        vinCompare2.appendChild(app2);
+        if (Object.values(ymm2).every((val) => val)) {
+          app2.appendChild(
+            document.createTextNode(`${ymm2.year} ${ymm2.make} ${ymm2.model}`)
+          );
+          vinCompare2.appendChild(app2);
+        }
 
         showVinInfo(vinStuff, vinCompare2);
       }

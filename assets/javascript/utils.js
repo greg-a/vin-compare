@@ -27,12 +27,26 @@ function createDecodeLI(key, value) {
 }
 
 function createVINLabel(vin) {
+  const container = document.createElement("div");
+  container.className = "d-flex mb-1";
+
   const label = document.createElement("h4");
+  label.className = "mb-0";
   const bold = document.createElement("b");
   bold.textContent = "VIN: ";
   label.appendChild(bold);
   label.appendChild(document.createTextNode(vin.toUpperCase()));
-  return label;
+  container.appendChild(label);
+
+  const affiliateButton = document.createElement("a");
+  affiliateButton.className = "btn btn-primary btn-sm text-nowrap w-auto";
+  affiliateButton.style.marginLeft = "10px";
+  affiliateButton.innerHTML = "Get VIN Report";
+  affiliateButton.href = generateAffiliateLink(vin);
+  affiliateButton.target = "_blank";
+
+  container.appendChild(affiliateButton);
+  return container;
 }
 
 async function getVinInfo(vin) {
