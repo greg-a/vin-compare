@@ -51,38 +51,40 @@
     </div>
 
     <div class="main-container">
-      <div class="input-group">
-        <input
-          type="text"
-          class="form-control vin-input"
-          placeholder="enter first vin..."
-          aria-label="VIN"
-          aria-describedby="search-btn"
-          maxlength="17"
-          minlength="17"
-        />
-        <button
-          class="btn btn-outline-secondary d-flex justify-content-center align-items-center input-group-text"
-          type="button"
-          id="search-btn"
-        >
-          <div
-            class="spinner-border spinner-border-sm"
-            role="status"
-            style="display: none"
-            id="loading-spinner"
+      <div id="input-container">
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control vin-input"
+            placeholder="enter first vin..."
+            aria-label="VIN"
+            aria-describedby="search-btn"
+            maxlength="17"
+            minlength="17"
+          />
+          <button
+            class="btn btn-outline-secondary d-flex justify-content-center align-items-center input-group-text"
+            type="button"
+            id="search-btn"
           >
-            <span class="visually-hidden">Loading...</span>
-          </div>
-          <span id="btn-text">Search</span>
-        </button>
-        <button
-          class="btn btn-outline-danger input-group-text"
-          type="button"
-          id="clear-btn"
-        >
-          Clear
-        </button>
+            <div
+              class="spinner-border spinner-border-sm"
+              role="status"
+              style="display: none"
+              id="loading-spinner"
+            >
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <span id="btn-text">Search</span>
+          </button>
+          <button
+            class="btn btn-outline-danger input-group-text"
+            type="button"
+            id="clear-btn"
+          >
+            Clear
+          </button>
+        </div>
       </div>
       <div
         class="btn-group w-50 my-3"

@@ -1,3 +1,6 @@
+const generateAffiliateLink = (vin) =>
+  `http://gsadev.vincheckup.hop.clickbank.net/?item=3&exitValue=ON&landing=loading&vin=${vin}&redir_page=index`;
+
 function isValidVIN(vin) {
   return vin.length === 17;
 }
@@ -26,6 +29,37 @@ function createDecodeLI(key, value) {
   return newLI;
 }
 
+function createYMMSection(vinInfo) {
+  const ymm = getYearMakeModel(vinInfo.results);
+  const appContainer = document.createElement("div");
+  appContainer.className = "d-flex align-items-center";
+  const app = document.createElement("h5");
+
+  if (Object.values(ymm).every((val) => val)) {
+    const affiliateButton = createAffiliateLink(vinInfo.vin);
+    app.textContent = `${ymm.year} ${ymm.make} ${ymm.model}`;
+    app.className = "mb-0";
+
+    appContainer.appendChild(app);
+    appContainer.appendChild(affiliateButton);
+  } else {
+    app.textContent = "Could not find VIN data";
+    app.className = "text-danger";
+    appContainer.appendChild(app);
+  }
+  return appContainer;
+}
+
+function createAffiliateLink(vin) {
+  const button = document.createElement("a");
+  button.className = "btn btn-primary btn-sm text-nowrap w-auto";
+  button.style.marginLeft = "10px";
+  button.innerHTML = "Get VIN Report";
+  button.href = generateAffiliateLink(vin);
+  button.target = "_blank";
+  return button;
+}
+
 function createVINLabel(vin) {
   const container = document.createElement("div");
   container.className = "d-flex mb-1";
@@ -38,14 +72,8 @@ function createVINLabel(vin) {
   label.appendChild(document.createTextNode(vin.toUpperCase()));
   container.appendChild(label);
 
-  const affiliateButton = document.createElement("a");
-  affiliateButton.className = "btn btn-primary btn-sm text-nowrap w-auto";
-  affiliateButton.style.marginLeft = "10px";
-  affiliateButton.innerHTML = "Get VIN Report";
-  affiliateButton.href = generateAffiliateLink(vin);
-  affiliateButton.target = "_blank";
-
-  container.appendChild(affiliateButton);
+  // const affiliateButton = createAffiliateLink(vin);
+  // container.appendChild(affiliateButton);
   return container;
 }
 
@@ -56,7 +84,7 @@ async function getVinInfo(vin) {
         `https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/${vin}?format=json`
       );
       const { Results } = await response.json();
-      return Results;
+      return { results: Results, vin };
     } catch {
       throw alert("Server error. Please try again.");
     }
@@ -87,4 +115,9 @@ function clearVinInfo(...containers) {
     const vinData = container.querySelectorAll(".vin-data");
     vinData.forEach((data) => data.parentNode.removeChild(data));
   });
+}
+
+function clearInputFeedback() {
+  const feedback = document.getElementById("input-feedback");
+  feedback?.remove();
 }

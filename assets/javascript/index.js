@@ -14,20 +14,19 @@ const clearBtn = document.getElementById("clear-btn");
 const testVinBtns = document.querySelectorAll(".test-vin");
 const attributeToggle = document.getElementById("attribute-toggle");
 
-const generateAffiliateLink = (vin) =>
-  `http://gsadev.vincheckup.hop.clickbank.net/?item=3&exitValue=ON&landing=loading&vin=${vin}&redir_page=index`;
-
 searchBtn.addEventListener("click", async function () {
   await addVIN();
 });
 
 vinInput.addEventListener("keyup", async function (event) {
+  clearInputFeedback();
   if (event.keyCode === 13) {
     addVIN();
   }
 });
 
 clearBtn.addEventListener("click", function () {
+  clearInputFeedback();
   decodeLists.forEach((list) => (list.innerHTML = ""));
   vinInfo1 = null;
   vinInfo2 = null;
@@ -43,46 +42,35 @@ clearBtn.addEventListener("click", function () {
 });
 
 async function addVIN() {
+  clearInputFeedback();
   const vinValue = vinInput.value.trim();
   if (isValidVIN(vinValue)) {
     toggleLoadingSpinner(true);
     try {
-      const vinStuff = await getVinInfo(vinValue);
+      const vinInfo = await getVinInfo(vinValue);
+      const ymm = createYMMSection(vinInfo);
+      const vinLabel = createVINLabel(vinValue);
 
       if (!vinInfo1) {
         attributeToggle.style.visibility = "initial";
         vinInput.setAttribute("placeholder", "enter second vin...");
-        vinCompare1.appendChild(createVINLabel(vinValue));
-        vinInfo1 = vinStuff;
-        const app1 = document.createElement("h5");
-        const ymm1 = getYearMakeModel(vinInfo1);
+        vinCompare1.appendChild(vinLabel);
+        vinInfo1 = vinInfo.results;
 
-        if (Object.values(ymm1).every((val) => val)) {
-          app1.appendChild(
-            document.createTextNode(`${ymm1.year} ${ymm1.make} ${ymm1.model}`)
-          );
-          vinCompare1.appendChild(app1);
-        }
+        vinCompare1.appendChild(ymm);
 
-        showVinInfo(vinStuff, vinCompare1);
+        showVinInfo(vinInfo.results, vinCompare1);
       } else if (!vinInfo2) {
         compareBtnLabel.style.visibility = "initial";
         vinInput.setAttribute("placeholder", "compare vins");
         vinInput.setAttribute("disabled", true);
         searchBtn.setAttribute("disabled", true);
-        vinCompare2.appendChild(createVINLabel(vinValue));
-        vinInfo2 = vinStuff;
+        vinCompare2.appendChild(vinLabel);
+        vinInfo2 = vinInfo.results;
 
-        const app2 = document.createElement("h5");
-        const ymm2 = getYearMakeModel(vinInfo2);
-        if (Object.values(ymm2).every((val) => val)) {
-          app2.appendChild(
-            document.createTextNode(`${ymm2.year} ${ymm2.make} ${ymm2.model}`)
-          );
-          vinCompare2.appendChild(app2);
-        }
+        vinCompare2.appendChild(ymm);
 
-        showVinInfo(vinStuff, vinCompare2);
+        showVinInfo(vinInfo.results, vinCompare2);
       }
 
       toggleLoadingSpinner(false);
@@ -90,6 +78,13 @@ async function addVIN() {
     } catch {
       toggleLoadingSpinner(false);
     }
+  } else {
+    const inputContainer = document.getElementById("input-container");
+    const inputFeedback = document.createElement("small");
+    inputFeedback.className = "text-danger";
+    inputFeedback.id = "input-feedback";
+    inputFeedback.textContent = "Invalid VIN";
+    inputContainer.appendChild(inputFeedback);
   }
 }
 
