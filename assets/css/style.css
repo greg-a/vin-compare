@@ -10,6 +10,7 @@ body {
     "main1 main2";
   gap: 10px;
   margin: 50px;
+  min-height: 100vh;
 }
 
 #input-container {
