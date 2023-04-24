@@ -12,7 +12,7 @@ body {
   margin: 50px;
 }
 
-.input-group {
+#input-container {
   grid-area: search;
 }
 
@@ -30,6 +30,10 @@ body {
 
 #compare-container-2 {
   grid-area: main2;
+}
+
+#attribute-toggle > label {
+  min-width: 65px;
 }
 
 .jumbotron {
