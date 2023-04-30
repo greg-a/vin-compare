@@ -2,45 +2,18 @@ body {
   background: url(../images/so-white.png);
 }
 
-.main-container {
-  display: grid;
-  grid-template-areas:
-    "search search"
-    "toggle toggle"
-    "main1 main2";
-  gap: 10px;
-  margin: 50px;
-  min-height: 100vh;
-}
-
-#input-container {
-  grid-area: search;
-}
-
 #logo {
-  font-family: 'Bruno Ace SC', cursive;
+  font-family: "Bruno Ace SC", cursive;
 }
 
-#attribute-toggle {
-  grid-area: toggle;
-}
-
-#compare-container-1 {
-  grid-area: main1;
-}
-
-#compare-container-2 {
-  grid-area: main2;
-}
-
-#attribute-toggle > label {
-  min-width: 65px;
+.main-container {
+  min-height: 100vh;
 }
 
 .jumbotron {
   background: url(../images/headlight-background.jpg);
   background-size: cover;
-  background-position-y: -435px;
+  background-position: center;
   color: #ffffff;
 }
 
@@ -61,28 +34,4 @@ body {
   min-height: 0;
   min-width: 0;
   position: absolute;
-}
-
-.btn {
-  width: 90px;
-}
-
-#clear-btn {
-  width: 60px;
-}
-
-.compare-inner-container {
-  display: flex;
-  flex-direction: column;
-}
-
-@media only screen and (min-width: 1800px) {
-  .jumbotron {
-    background-position-y: -560px;
-  }
-}
-@media only screen and (max-width: 980px) {
-  .test-vins {
-    position: relative;
-  }
 }
